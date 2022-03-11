@@ -1,0 +1,61 @@
+﻿<Window x:Class="PongSolo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PongSolo"
+        mc:Ignorable="d"
+        xmlns:gif ="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+        Title="Pong solo" Height="600" Width="735.927" WindowStartupLocation="CenterScreen" Name="mainMenu" Loaded="mainMenu_Loaded" Cursor="None" Closing="gameOverWindow_Closing" Icon="/Resources/preview.ico">
+    <Window.Resources>
+        <Style x:Key="_ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="{x:Null}"/>
+                                <Setter Property="Foreground" Value="Green"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid >
+        <Grid.Background>
+            <VisualBrush>
+                <VisualBrush.Visual>
+                    <Image gif:AnimationBehavior.SourceUri="Resources/giphy.gif" gif:AnimationBehavior.AutoStart="True" gif:AnimationBehavior.RepeatBehavior="1"/>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ListBox ItemContainerStyle="{DynamicResource _ListBoxItemStyle}" IsHitTestVisible="False" Grid.Row="1" Grid.Column="1"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}">
+            <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" IsSelected="True" Name="playLabel" KeyUp="playLabel_KeyUp" FontFamily="VCR OSD MONO">PLAY</ListBoxItem>
+            <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Name="leaderboardButton" FontFamily="VCR OSD MONO" KeyUp="leaderboardButton_KeyUp">LEADERBOARD</ListBoxItem>
+            <ListBoxItem HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Name="exitButton" KeyUp="exitButton_KeyUp" FontFamily="VCR OSD MONO">EXIT</ListBoxItem>
+        </ListBox>
+
+    </Grid>
+
+</Window>
